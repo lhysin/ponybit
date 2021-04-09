@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+
+<body>
+
+    <th:block th:include="fragments/homeNavigator"></th:block>
+
+    <!--/* custom resources */-->
+    <script th:src="@{/resources/js/thymeleaf/login.js}"></script>
+
+    <!--/* content start */-->
+    <div class="main-form">
+        <div class="container signup-form">
+          <form class="needs-validation" id="loginForm" novalidate>
+              <h1 class="h1 mb-3 font-weight-normal text-center">로그인</h1>
+              <div class="form-group row">
+                <label for="email" class="col-sm-3 col-form-label">이메일 주소</label>
+                <div class="col-sm-9">
+                    <input type="email" class="form-control" name="email" placeholder="이메일 주소" required="required">
+                    <div class="invalid-feedback">이메일 주소를 입력해 주세요.</div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label for="pwd" class="col-sm-3 col-form-label">비밀번호</label>
+                <div class="col-sm-9">
+                    <input type="password" class="form-control" name="pwd" placeholder="비밀번호" required="required">
+                    <div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
+                </div>
+              </div>
+               <div class="checkbox">
+                   <label><input type="checkbox" name="remember-me" /> 자동 로그인</label>
+               </div>
+              <div class="form-group">
+                  <button type="submit" class="btn btn-pony btn-block btn-lg" id="btnLogin">로그인</button>
+              </div>
+              <a class="float-left font-weight-bold" href="/signup">회원가입</a>
+              <a class="float-right" href="/reset">암호를 잊으셨습니까?</a>
+          </form>
+        </div>
+    </div>
+    <!--/* content end */-->
+
+</body>
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>

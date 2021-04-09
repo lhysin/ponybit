@@ -1,0 +1,52 @@
+// exchange-web
+buildscript {
+    repositories { mavenCentral()}
+    dependencies { classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'exchange-web'
+    version = '0.0.1-SNAPSHOT'
+    mainClassName = 'io.exchange.web.Application'
+}
+
+sourceCompatibility = 1.8
+
+repositories { mavenCentral() }
+
+
+/**
+ * Task from spring-boot-gradle-plugin, configured for easier development
+ */
+bootRun {
+    /* Lets you pick Spring Boot profile by system properties, 
+     * e.g. gradle bootRun -Dspring.profiles.active=dev
+     */
+    systemProperties = System.properties
+}
+
+dependencies {
+    compile (project(':exchange-core')){
+        // exclude module: 'exchange-domain'
+        // or transitive = false 
+        //e.g. target sub module depencies
+    }
+
+    compile "org.springframework.boot:spring-boot:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-devtools:$springBootVersion"
+    compile "org.springframework.boot:spring-boot-starter-actuator:$springBootVersion"
+
+    //compile "org.springframework.boot:spring-boot-devtools:$springBootVersion"
+    //compile "org.springframework.boot:spring-boot-starter-data-rest:$springBootVersion"
+    //compile "org.springframework.session:spring-session:1.3.0.RELEASE"
+
+    compile "org.apache.tomcat:tomcat-juli:$tomcatVersion"
+
+    // test
+    testRuntime 'com.h2database:h2:1.4.191'
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+}

@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+
+<body id="home" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <div class="spinner"><i class="fa fa-spinner fa-spin" style="font-size:40px"></i></div>
+
+    <th:block th:include="fragments/homeNavigator"></th:block>
+
+    <!-- custom -->
+    <script th:src="@{/resources/js/thymeleaf/transaction.js}"></script>
+
+    <!-- content start -->
+    <!-- transaction -->
+    <div class="container">
+      <div class="signup-form" style="max-width:100%;">
+          <form id="signUpForm">
+            <h2>Transaction List</h2>
+            <p class="lead">created Wallet's Transaction List</p>
+              <div class="form-group">
+                <ul class="nav nav-tabs" id="coinList">
+                </ul>
+                <div id="avail" class="alert alert-success" style="margin-top: 15px;padding: 5px;margin-bottom:0px"></div>
+                <div class="tab-content" id="transactionList" style="display:none">
+                    <div class="container" style="padding:15px;">
+                      <button id="btnDeposit" type="button" class="btn" style="min-width:80px;padding:5px">Deposit</button>
+                      <button id="btnWithdrawals" type="button" class="btn" style="min-width:80px;padding:5px">Withdrawals</button>
+                    </div>
+                    <div class="table-responsive"> 
+                      <table id="transactionTable">
+                        <thead>
+                            <tr>
+                                <th class="text-center" data-field="regDtm">Registry Date</th>
+                                <th class="text-center" data-field="category">Category</th>
+                                <th class="text-center" data-field="status">Status</th>
+                                <th class="text-center" data-field="txId">Transaction ID</th>
+                                <th class="text-center" data-field="amount">Amount</th>
+                                <th class="text-center" data-field="completeDtm">Complete Date</th>
+                            </tr>
+                        </thead>
+                        <tbody id="transactionBody"></tbody>
+                      </table>
+                      </div>
+                    <ul id="pagination" class="pagination-md">
+                    </ul>
+                    <div>Transactions require Admin approval.</div>
+                </div>
+                <div class="tab-content" id="precreateWallet" style="display:none">
+                    <button id="btnMovePage" type="button" class="btn btn-primary btn-lg" style="margin-top:10px">Move Wallet Page</button>
+                    <div class="help-block with-errors"></div>
+                </div>
+              </div>
+          </form>
+        </div>
+    </div>
+
+    <!-- The Modal -->
+  <div class="modal fade" id="transactionsModal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2 class="modal-title"></h2>
+          <p class="lead" style="margin-bottom:0px;"></p>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+          <form id="modalForm" data-toggle="validator" role="form">
+            <div id="info" class="alert alert-info" style="margin-top: 1px;padding: 5px;margin-bottom:10px"></div>
+            <div id="warn" class="alert alert-danger" style="margin-top: 1px;padding: 5px;margin-bottom:10px"></div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-outdent"></i></span>
+                      <input type="text" class="form-control" id="txId" name="txId" placeholder="Transaction ID" required="required">
+                  </div>
+                  <div class="help-block with-errors"></div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-outdent"></i></span>
+                      <input type=number class="form-control" id="amount" name="amount" placeholder="Amount" required="required" 
+                      min="0.00000001" max="100000000000000000" step="0.00000001">
+                  </div>
+                  <div class="help-block with-errors"></div>
+              </div>
+              <div class="form-group">
+                  <div class="input-group">
+                      <span class="input-group-addon"><i class="fa fa-outdent"></i></span>
+                      <input type="text" class="form-control" id="address" name="address" placeholder="From Adress" required="required">
+                  </div>
+                  <div class="help-block with-errors"></div>
+              </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary btn-block btn-lg">Deposit</button>
+            </div>
+          </form>
+         </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>
+
+

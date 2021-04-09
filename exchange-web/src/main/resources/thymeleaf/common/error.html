@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+
+<body id="home" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <th:block th:include="fragments/homeNavigator(isHome='false')"></th:block>
+
+    <!-- content start -->
+    <!-- sing in -->
+    <div class="containner">
+        <h1>Something went wrong! </h1>
+        <h1 th:text="${errorMessage}">error message</h1>
+        <a href="/">Go Home</a>
+    </div>
+    <!-- content end -->
+
+</body>
+
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>

@@ -1,0 +1,52 @@
+// exchange-core
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile project(':exchange-domain')
+
+    compile "org.springframework:spring-tx:${springVersion}"
+    compile "org.springframework:spring-context-support:${springVersion}"
+    compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-mail:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-web:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-thymeleaf:$springBootVersion"
+    //compile "org.springframework.boot:spring-boot-starter-amqp:${springBootVersion}"
+    //compile "org.springframework.boot:spring-boot-starter-integration:${springBootVersion}"
+    //compile "org.springframework.boot:spring-boot-starter-data-redis:${springBootVersion}"
+    //compile "org.springframework.boot:spring-boot-starter-websocket:${springBootVersion}"
+
+    // thymeleaf template email 
+    // compile "it.ozimov:spring-boot-email-core:0.6.3"
+    // compile "it.ozimov:spring-boot-thymeleaf-email:0.6.3"
+
+    // user-agent util
+    compile 'eu.bitwalker:UserAgentUtils:1.20'
+
+    // google auth
+    compile "com.warrenstrange:googleauth:0.5.0"
+
+    //compile 'com.sun.mail:javax.mail:1.5.5'
+
+    // web3j
+    compile 'org.web3j:core:2.2.1'
+
+    // jsonrpc4j
+    compile 'com.github.briandilley.jsonrpc4j:jsonrpc4j:1.5.0'
+
+    // feign java client
+    compile 'io.github.openfeign:feign-core:10.2.0'
+    compile 'io.github.openfeign:feign-okhttp:10.2.0'
+    compile 'io.github.openfeign:feign-gson:10.2.0'
+    compile 'io.github.openfeign:feign-slf4j:10.2.0'
+
+    compile 'mysql:mysql-connector-java:5.1.40'
+    compile 'com.h2database:h2:1.4.191'
+
+    // test
+    testRuntime 'com.h2database:h2:1.4.191'
+    testCompile "org.springframework.boot:spring-boot-starter-test:$springBootVersion"
+}

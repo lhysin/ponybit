@@ -1,0 +1,68 @@
+// exchange-monolith
+
+/*
+ * root and subproject global variable
+ * ext.springBootVersion
+ * "${springBootVersion}"
+ * "$springBootVersion"
+ * ./gradlew subproject:task command is available
+ */
+ext {
+    springBootVersion = '2.1.0.RELEASE'
+    springVersion = '5.1.2.RELEASE'
+    tomcatVersion = '9.0.12'
+}
+
+buildscript {
+  repositories {
+    jcenter()
+  }
+}
+
+allprojects {
+  repositories {
+    mavenLocal()
+    // maven { url: 'http://jcenter.bintray.com' }
+    mavenCentral()
+  }
+
+  // rootProject task clean
+  apply plugin: 'base'
+}
+
+gradle.taskGraph.afterTask {
+    Task task,TaskState state ->
+        if (state.failure) {    
+            print "${task.name}_faile|"
+        } else { 
+            print "${task.name}_success|"
+        }
+}
+
+//apply from: file('gradle/check.gradle')
+
+/**
+  * subprojects common config
+  * ./gradlew subproject:task command is not available
+  */
+subprojects {  
+  apply plugin: 'java'
+  apply plugin: 'eclipse'
+  group = "io.exchange.${rootProject.name}"
+}
+
+// for Heroku Deployment
+task stage() {
+  subprojects.each{
+    dependsOn("${it.project.name}:build").dependsOn("${it.project.name}:copyToLib")
+  }
+}
+subprojects {
+  project ->
+  task copyToLib(type: Copy) {
+  if(project.name.contains('web')){
+      from "$buildDir/libs"
+      into "$rootProject.buildDir/libs"
+    }
+  }
+}

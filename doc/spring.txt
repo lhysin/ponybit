@@ -1,0 +1,28 @@
+// jUnit test @IfProfileValue(name = "spring.profiles.active", value="dev")
+https://stackoverflow.com/questions/33016848/how-can-i-use-ifprofilevalue-to-test-if-a-profile-is-active
+
+
+// springboot 2.0 over only available mysql innodb(rollback) use another dialect
+// https://stackoverflow.com/questions/49470187/no-rollback-on-transaction-spring-boot-2-0
+hibernateDialect = "org.hibernate.dialect.MySQL5InnoDBDialect"; 
+
+// datasource and transaction in hibernate
+Hibernate and why it doesn't use the auto-commit behaviour common in some SQL clients.
+https://developer.jboss.org/wiki/SessionsAndTransactions
+ex) .save(entity)
+    .flush()
+    H2 Database   : transaction not end
+    Mysql(InnoDB) : transaction end
+    
+
+// String...
+An array is a fixed length collection of objects. e.g. new int[5];
+An ArrayList is a variable length collection of objects. e.g. new ArrayList<Integer>();
+The ... in variadic functions is a part of a method signature denoting an array of parameters.
+e.g. public void printLines(String... lines)
+
+// controller argument resolver
+spring mvc 5, springboot 2.1
+default setting argument resolver can not handling
+querystring -> ServletModelAttributeMethodProcessor
+ServletModelAttributeMethodProcessor is non annotation object data binding.(constructor... true, false)

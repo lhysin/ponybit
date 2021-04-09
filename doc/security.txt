@@ -1,0 +1,9 @@
+// @PreAuthorize
+- specific role
+hasRole(ROLE_ADMIN)
+
+- specific role
+hasAnyRole([ROLE_USER, ROLE_ADMIN])
+
+- login required
+isAuthenticated()

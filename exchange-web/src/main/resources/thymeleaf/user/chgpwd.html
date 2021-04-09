@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+
+<body>
+
+    <th:block th:include="fragments/homeNavigator"></th:block>
+
+    <!--/* custom */-->
+    <script th:src="@{/resources/js/thymeleaf/chgpwd.js}"></script>
+
+    <!--/* content start */-->
+    <!--/* content start */-->
+    <div class="container">
+        <div class="row main-form">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="/mypage" class="list-group-item"><i class="fa fa-key"></i> <span>인증센터</span></a>
+                    <a href="/chgpwd" class="list-group-item active"><i class="fa fa-credit-card"></i> <span>비밀번호변경</span></a>
+                    <a href="/refpage" class="list-group-item"><i class="fa fa-user-circle"></i> <span>추천인 입력</span></a>
+                    <a class="list-group-item cursor-pointer" id="openRefModal"><i class="far fa-list-alt"></i> <span>추천인 현황</span></a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="container signup-form">
+                  <form class="needs-validation" id="chgPwdForm" novalidate>
+                      <h1 class="h1 mb-3 font-weight-normal text-center">비밀번호 변경</h1>
+                      <div class="form-group row">
+                        <label for="pwd" class="col-sm-3 col-form-label">기존 비밀번호</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="password" name="pwd" placeholder="비밀번호를 입력하세요." required="required">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="newPwd" class="col-sm-3 col-form-label">신규 비밀번호</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="newPassword" name="newPwd" placeholder="신규 비밀번호를 입력하세요." 
+                                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,}" required="required">
+                            <div class="invalid-feedback">비밀번호는 6글자 이상, 대소문자, 숫자를 포함하여야합니다.</div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="newConfirmPwd" class="col-sm-3 col-form-label">비밀번호 확인</label>
+                        <div class="col-sm-9">
+                            <input type="password" class="form-control" id="newConfirmPassword" name="newConfirmPwd" placeholder="동일한 비밀번호 입력하세요." required="required">
+                            <div class="invalid-feedback">패스워드가 동일하지 않습니다.</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-pony btn-block btn-lg">비밀번호 변경</button>
+                      </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+        <a id="kakao-login-btn"></a>
+    </div>
+    <!--/* content end */-->
+
+    <!--/* content end */-->
+
+</body>
+<script th:inline="javascript" type="text/javascript">
+    chgPwd.loginUser = /*[[${loginUser}]]*/
+    if(!!chgPwd.loginUser){
+        chgPwd.loginUser.refCnt = /*[[${refCnt}]]*/
+    }
+</script>
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>
+

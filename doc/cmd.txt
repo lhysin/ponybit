@@ -1,0 +1,2 @@
+// find used port and pid in windows cmd
+netstat -ano | findstr 5000

@@ -1,0 +1,143 @@
+# application
+application:
+  title: '@project.groupId@.@project.artifactId@ (@project.version@)'
+
+# information
+info:
+  app:
+    version: '@project.version@'
+    build-date: '@maven.build.timestamp@'
+
+# embeded tomcat
+server:
+  port: 8080
+  tomcat:
+    uri-encoding: UTF-8
+
+  #These settings tell Spring to open SSL port
+  #ssl:
+  #  enabled: true
+  #  key-store: 'classpath:keystore/ponybit.jks'
+  #  key-store-password: ''UNCENCORED''
+  #  key-password: ''UNCENCORED''
+
+  # http port with TomcatConfig.java
+  #http:
+  #  port: 8080
+
+  # SpringBoot default error page disable
+  error:
+    whitelabel:
+      enabled: false
+
+
+spring:
+
+  # IDENTITY
+  application:
+    name: '@project.artifactId@'
+
+  # banner
+  #banner:
+  #  charset: UTF-8
+  #  location: classpath:banner.txt
+
+
+  # favicon
+  #mvc.favicon.enabled: true
+
+  # default active profile is local
+  # local, dev, prd
+  profiles:
+    active: local
+
+  # HTTP encoding (HttpEncodingProperties)
+  http:
+    encoding:
+      charset: UTF-8 # the encoding of HTTP requests/responses
+      enabled: true # enable http encoding support
+      force: true # force the configured encoding
+
+  # JavaMail Configuration
+  mail:
+    username: 'admin@ponybit.io'
+    password: 'UNCENCORED'
+
+# default logging setting
+logging:
+  config: classpath:logback-spring.xml
+  file: logs
+  level:
+    # default logging
+    root: WARN
+    io.exchange: DEBUG
+    org.springframework.web: DEBUG
+    org.springframework.security: DEBUG
+
+    # hibernate sql and parameter logging
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+    # mail logging
+    org.springframework.mail: DEBUG
+    javax.mail: DEBUG
+    com.sun.mail: DEBUG
+
+    # feign logging
+    feign : DEBUG
+
+# actuator setting
+management:
+  endpoint:
+    health:
+      show-details: "ALWAYS"
+
+##### custom constant list start #####
+
+# application properties
+props:
+  strings:
+    - aaa
+    - bbb
+    - ccc
+
+wallet.bitcoin.rpc.url: http://bitcoinrpc:FeueMLiXBHQ2dLizY75tNKcEFDhvm9FZHd3eg6ovkVKw@127.0.0.1:8332
+wallet.litecoin.rpc.url: http://litecoinrpc:FeueMLiXBHQ2dLizY75tNKcEFDhvm9FZHd3eg6ovkVKw@127.0.0.1:9332
+wallet.dash.rpc.url: http://dashrpc:FeueMLiXBHQ2dLizY75tNKcEFDhvm9FZHd3eg6ovkVKw@127.0.0.1:9998
+wallet.ethereum.rpc.url: http://127.0.0.1:8545
+
+# 5am every day purge
+purge:
+  cron:
+    expression: 0 0 5 * * ?
+
+email:
+  noreply: noreply@ponybit.io
+  admin: admin@ponybit.io
+##### custom constant list end #####
+
+
+################### env.profile test (h2 file db) start ##########################
+---
+spring:
+  profiles: test
+  #H2 console setting
+  h2:
+    console:
+      path: /h2
+      settings:
+        web-allow-others: true
+      enabled: true
+
+  # datasource Configuration
+  datasource:
+    driverClassName: org.h2.jdbcx.JdbcDataSource
+    url: jdbc:h2:mem:exchange;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: local
+    password:
+
+# log level
+logging:
+  level:
+    org.springframework.web: DEBUG
+################### env.profile test (h2 file db) end ##########################

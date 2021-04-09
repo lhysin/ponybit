@@ -1,0 +1,41 @@
+################### env.profile prd start ##########################
+---
+spring:
+  profiles: prd
+  h2:
+    console:
+      enabled: false
+
+  # datasource Configuration
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    # from https://lightsail.aws.amazon.com
+    url: jdbc:mysql://3.208.190.5:3306/exchange?characterEncoding=UTF-8&serverTimezone=UTC&createDatabaseIfNotExist=true
+    username: ponydev01
+    password: UNCENCORED
+
+# log level
+logging:
+  level:
+    org.springframework.web: ERROR
+    org.springframework.security: ERROR
+
+    # hibernate sql and parameter logging
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: DEBUG
+    #org.hibernate.SQL: DEBUG
+    #org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+
+    # mail logging
+    org.springframework.mail: DEBUG
+    javax.mail: DEBUG
+    com.sun.mail: DEBUG
+
+    # feign logging
+    feign : ERROR
+#server:
+#  port: 443
+#  # http port with ServerConfig.java
+#  http:
+#    port: 80
+################### env.profile prd end ##########################

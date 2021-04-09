@@ -1,0 +1,36 @@
+// mysql client install for Linux
+# ubuntu14
+apt-get install mysql-client-core-5.6
+# ubuntu16
+apt-get install mysql-client
+
+// mysql client install for MacOs
+brew install mysql
+
+/* mysql cli client, default autocommit is on. */
+
+// mysql connection cli
+mysql -u{username} -p{password}
+    -h{remote server ip or name} -P{port}
+    -D{DB name}
+// ex)
+mysql -usql12266086 -paTcL7BhMNq -hsql12.freemysqlhosting.net -P3306 -Dsql12266086
+from https://www.freemysqlhosting.net/account/
+id  : pony.dev.01@gmail.com
+pwd : UNCENCORED
+
+// default cli
+show engines;
+show databases;
+create database {newDatabaseName};
+use {databaseName}
+
+// isInnodb
+show variables like 'have_innodb';
+
+// timezone
+SET global time_zone='Asia/Seoul';
+SET session time_zone='Asia/Seoul';
+SET time_zone='Asia/Seoul';
+
+SELECT @@GLOBAL.time_zone, @@SESSION.time_zone, @@time_zone;

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+
+<body>
+
+    <th:block th:include="fragments/homeNavigator"></th:block>
+
+    <!--/* custom resources */-->
+    <script th:src="@{/resources/js/thymeleaf/active.js}"></script>
+
+    <!--/* content start */-->
+    <div class="main-form">
+        <div class="container signup-form" id="activeContainer">
+        </div>
+    </div>
+    <!--/* content end */-->
+
+</body>
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>

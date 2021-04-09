@@ -1,0 +1,5 @@
+// gmail low app level
+https://myaccount.google.com/lesssecureapps
+
+// gmail login fail...force login
+https://accounts.google.com/b/0/DisplayUnlockCaptcha

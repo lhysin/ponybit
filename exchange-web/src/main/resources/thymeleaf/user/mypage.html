@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+
+<body>
+
+    <th:block th:include="fragments/homeNavigator"></th:block>
+
+    <!--/* custom */-->
+    <script th:src="@{/resources/js/kakao.min.js}"></script>
+    <script th:src="@{/resources/js/thymeleaf/mypage.js}"></script>
+
+    <!--/* content start */-->
+    <div class="container">
+        <div class="row main-form">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="/mypage" class="list-group-item active"><i class="fa fa-key"></i> <span>인증센터</span></a>
+                    <a href="/chgpwd" class="list-group-item"><i class="fa fa-credit-card"></i> <span>비밀번호변경</span></a>
+                    <a href="/refpage" class="list-group-item"><i class="fa fa-user-circle"></i> <span>추천인 입력</span></a>
+                    <a class="list-group-item cursor-pointer" id="openRefModal"><i class="far fa-list-alt"></i> <span>추천인 현황</span></a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="container signup-form">
+                    <h1 class="h1 mb-3 font-weight-normal text-center">인증센터</h1>
+                    <div class="alert alert-secondary text-center" style="margin-top: 15px;margin-bottom:15px">인증레벨 : <strong th:text="${loginUser.userLevel.level}"></strong> 단계</div>
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                        <a class="nav-link active show" data-toggle="tab" href="#emailTab" role="tab" aria-controls="emailTab" aria-selected="true">
+                        <i class="fas fa-envelope-open-text"></i> 이메일 인증</a>
+                        </li>
+                        <li class="nav-item">
+                        <a class="nav-link" data-toggle="tab" href="#kakaoTab" role="tab" aria-controls="kakaoTab" aria-selected="false">
+                        <i class="icon-basket-loaded"></i> 카카오톡 인증</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="emailTab" role="tabpanel">
+                            <div class="alert alert-success" style="margin-top: 15px;margin-bottom:15px"><strong th:text="${loginUser.email}"></strong>의 이메일 인증이 완료되었습니다.</div>
+                        </div>
+                        <div class="tab-pane" id="kakaoTab" role="tabpanel">
+                            <div class="alert alert-info" style="margin-top: 15px;margin-bottom:15px">카카오톡 인증을 통하여 10,000 포니코인을 획득하세요!</div>
+                            <div class="alert alert-danger" style="margin-top: 15px;margin-bottom:15px">유의사항<br>* 카카오톡과 연결된 카카오 계정 로그인이 필요합니다.<br>* 카카오 계정으로 로그인 후 Ponybit 권한확인이 필요합니다.<br>* 카카오톡 인증은 자정기준 하루 최대 3회만 가능합니다.<br>* 아래 링크를 통해 카카오 계정 확인후 진행해주세요.<br> * <a class="d-inline" style="text-decoration:underline" href="https://accounts.kakao.com/weblogin/account/privacy_info" target="_blank">카카오 계정</a> 확인하기. (좌측 링크 클릭 후 로그인 뒤 서비스명에 카카오톡 항목이 노출되면 카카오톡 연결 계정입니다.)</div>
+<!--                             <a id="kakao-login-btn"></a> -->
+                            <a id="kakao-login-btn"><img id="kakao-login-btn" src="https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png" style="cursor: pointer" onmouseover="this.src='https://kauth.kakao.com/public/widget/login/kr/kr_02_medium_press.png'" onmouseout="this.src='https://kauth.kakao.com/public/widget/login/kr/kr_02_medium.png'"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/* content end */-->
+</body>
+
+<script th:inline="javascript" type="text/javascript">
+    myPage.userLevel = /*[[${loginUser.userLevel.level}]]*/
+    myPage.loginUser = /*[[${loginUser}]]*/
+    myPage.baseUrl = /*[[${baseUrl}]]*/
+    if(!!myPage.loginUser){
+        myPage.loginUser.refCnt = /*[[${refCnt}]]*/
+    }
+</script>
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>
+

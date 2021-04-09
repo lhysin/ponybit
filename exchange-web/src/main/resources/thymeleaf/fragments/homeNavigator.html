@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+    <meta charset="utf-8">
+        <style>
+            body {
+                min-height: 500px;
+                padding-top: 6.2rem;
+            }
+        </style>
+    </head>
+    <!--/* Navigator */-->
+    <nav class="fixed-top nav-fixed" th:fragment="navigator">
+        <div class="header">
+            <div class="h_wrap">
+                <h1><a class="cursor-pointer" href="/" style="padding-top:27px;"><img th:src="@{/resources/img/logo.png}" alt="PONYBIT" width="240" height="35"></a></h1>
+                <ul class="nav">
+                    <li><a class="cursor-pointer" href="/">HOME</a></li>
+                    <li><a class="cursor-default" data-toggle="tooltip" title="준비 중입니다." href="#">거래소</a></li>
+                    <li><a class="cursor-pointer" href="/presale">사전구매</a></li>
+                    <li><a class="cursor-pointer" href="/notice">공지사항</a></li>
+                    <li><a class="cursor-pointer" href="https://open.kakao.com/o/gn36NHvb" target="_blank">카카오 오픈채팅</a></li>
+                </ul>
+                <ul class="util" th:unless="${isLogin}">
+                    <li><a class="cursor-pointer" href="/login">로그인</a></li>
+                    <li><a class="cursor-pointer" href="/signup">회원가입</a></li>
+                </ul>
+                <ul class="util" th:if="${isLogin}">
+                    <li><a class="cursor-pointer" href="/logout">로그아웃</a></li>
+                    <li><a class="cursor-pointer" href="/mypage">마이페이지</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</html>

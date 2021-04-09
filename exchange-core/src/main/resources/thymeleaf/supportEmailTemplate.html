@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <title th:text="${title}">Email</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+<body>
+  <table border="0" cellpadding="0" cellspacing="0" width="100%" bgcolor="#efeff0">
+    <tr>
+      <td>
+        <!-- 600px - 800px CONTENTS CONTAINER TABLE -->
+        <table style="background:#ffffff;max-width:600px; margin:0 auto;" border="0" cellpadding="0" cellspacing="0" width="100%">
+          <tr>
+            <td style="background: #1c356e; text-align:center">
+                <a style="display: block;padding-bottom: 20px;" th:href="${baseUrl}"><img th:src="|${baseUrl}${logoImgPath}|" alt="PONYBIT"></a>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <table width="100%" style="padding:40px 30px">
+                   <tr th:each="msg : ${messages}">
+                    <td style="font-weight: bold;padding:3px 10px;font-size: 15px;">
+                        <span th:text="${msg}"></span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td style="padding:20px">
+                      <table width="100%" style="padding:20px 0; border-top:1px solid #DDDDDD;border-bottom:1px solid #DDDDDD">
+                        <tr>
+                          <td style="padding:3px 10px;font-size: 13px;">사용자 계정</td>
+                          <td style="padding:3px 10px;font-size: 15px;" th:text="${userEmail}"></td>
+                        </tr>
+                        <tr>
+                          <td style="padding:3px 10px;font-size: 13px;">요청 일자</td>
+                          <td style="padding:3px 10px;font-size: 15px;" th:text="${reqDate}"></td>
+                        </tr>
+                        <tr>
+                          <td style="padding:3px 10px;font-size: 13px;">접속주소</td>
+                          <td style="padding:3px 10px;font-size: 15px;"><a th:href="${targetUrl}"><span th:text="${targetUrl}"></span></a></td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+              </table>
+            </td>
+          </tr>
+          <tr>
+            <td style="padding: 0px 35px;padding-bottom: 40px;color: gray;">본 메일은 발신전용입니다.<br>Ponybit과 관련하여 궁금한 점이 있으시면 <a href="mailto:admin@ponybit.io" rel="noreferrer noopener" target="_blank">이메일</a>을 보내주세요.<br>Copyright © Ponybit. All rights reserved.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>

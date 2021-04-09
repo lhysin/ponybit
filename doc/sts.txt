@@ -1,0 +1,3 @@
+Workspace의 프로젝트 폴더 명과 Gradle 내부 Root project 명이 다를 경우 Gradle import 에러발생.
+
+해결책 : Workspace경로가 아닌 다른곳으로 프로젝트 폴더 경로 수정할것

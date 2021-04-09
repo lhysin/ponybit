@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+
+<body>
+
+    <th:block th:include="fragments/homeNavigator(type='notLogin')"></th:block>
+
+    <!--/* custom */-->
+    <script th:src="@{/resources/js/thymeleaf/refpage.js}"></script>
+    <!--/* content start */-->
+    <div class="container">
+        <div class="row main-form">
+            <div class="col-md-3">
+                <div class="list-group">
+                    <a href="/mypage" class="list-group-item"><i class="fa fa-key"></i> <span>인증센터</span></a>
+                    <a href="/chgpwd" class="list-group-item"><i class="fa fa-credit-card"></i> <span>비밀번호변경</span></a>
+                    <a href="/refpage" class="list-group-item active"><i class="fa fa-user-circle"></i> <span>추천인 입력</span></a>
+                    <a class="list-group-item cursor-pointer" id="openRefModal"><i class="far fa-list-alt"></i> <span>추천인 현황</span></a>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="container signup-form">
+                  <form class="needs-validation" id="refCdForm" novalidate>
+                      <h1 class="h1 mb-3 font-weight-normal text-center">추천인 입력</h1>
+                      <div class="form-group row">
+                        <label for="refCd" class="col-sm-3 col-form-label">추천인 코드</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" name="refCd" placeholder="추천인 코드" required="required">
+                            <div class="invalid-feedback">추천인 코드를 입력해 주세요.</div>
+                        </div>
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-pony btn-block btn-lg" id="btnVerify">추천코드입력</button>
+                      </div>
+                      <p>회원가입시 추천인 코드를 입력하지 않은 경우 신청가능합니다.</p>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/* content end */-->
+
+</body>
+<script th:inline="javascript" type="text/javascript">
+    refPage.otherRefCd = /*[[${otherRefCd}]]*/
+    refPage.loginUser = /*[[${loginUser}]]*/
+    if(!!refPage.loginUser){
+        refPage.loginUser.refCnt = /*[[${refCnt}]]*/
+    }
+</script>
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>

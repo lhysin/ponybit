@@ -1,0 +1,36 @@
+// heroku initialize
+
+// login with browser (default)
+heroku login -b
+
+// login with cli
+heroku login -i
+
+// heroku new app create
+heroku create wantAppName
+
+// app name change
+heroku apps:rename wantAppName
+
+// http://localhost:5000
+heroku local web
+
+// webapp port setting
+heroku config:set PORT="8080"
+
+// webapp springboot active profile setting
+heroku config:set JAVA_OPTS="-Dspring.profiles.active=dev -Dh2.isFileDb=true"
+
+// source merge and deploy
+git push heroku master
+
+// existing heroku app
+heroku git:remote -a yourAppName
+git push -f heroku master
+
+// heroku dyno stop/restart/shutdown
+heroku ps:stop web
+heroku ps:restart web
+
+// heroku change timezone
+heroku config:add TZ="Asia/Seoul"

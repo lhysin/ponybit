@@ -1,0 +1,12 @@
+// git repository initialize
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://domain.com/contextRoot
+git push -u origin master
+
+// remove git repository (.git)
+rm -rf .git
+
+// git chmod update
+git update-index --chmod=+x gradlew

@@ -1,0 +1,5 @@
+https://www.digicert.com/easy-csr/keytool.htm
+
+Java Keytool CSR Creation
+
+keytool -genkey -alias server -keyalg RSA -keysize 2048 -keystore Ponycoin.jks -dname "CN=Ponycoin,OU=develoment, O=Ponycoin Foundation, L=Singapore, ST=Singapore, C=SG" && keytool -certreq -alias server -file Ponycoin.csr -keystore Ponycoin.jks && echo Your certificate signing request is in Ponycoin.csr.  Your keystore file is Ponycoin.jks.  Thanks for using the DigiCert keytool CSR helper.

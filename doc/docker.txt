@@ -1,0 +1,26 @@
+// show all docker images
+docker images
+
+// show all container inform
+docker ps -a
+
+// remove container
+docker rm $CONTAINER_ID
+
+// start container
+docker start $CONTAINER_ID
+
+// stop container
+docker stop $CONTAINER_ID
+
+// show container logs 
+docker logs $CONTAINER_ID
+
+// show container process inform
+docker top $CONTAINER_ID
+
+// show container inform with JSON
+docker inspect $CONTAINER_ID
+
+// show container port
+docker port $CONTAINER_ID : 포트가 어디로 연결 되었있는지 보여준다.

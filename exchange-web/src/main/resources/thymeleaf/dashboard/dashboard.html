@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+
+<body id="home" data-spy="scroll" data-target=".navbar" data-offset="50">
+
+    <div class="spinner"><i class="fa fa-spinner fa-spin" style="font-size:40px"></i></div>
+
+    <th:block th:include="fragments/homeNavigator"></th:block>
+
+    <!-- custom -->
+    <script th:src="@{/resources/js/thymeleaf/dashboard.js}"></script>
+
+    <!-- content start -->
+    <!-- dashboard -->
+    <div class="container">
+      <div class="signup-form" style="max-width:100%;">
+          <form id="signUpForm">
+            <h2>Wallet List</h2>
+            <p class="lead">Yours Wallet List</p>
+            <div id="accordion" class="panel-group">
+            </div>
+          </form>
+        </div>
+    </div>
+
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>
+
+

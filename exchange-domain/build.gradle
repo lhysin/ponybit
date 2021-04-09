@@ -1,0 +1,81 @@
+// exchange-domain
+apply plugin: 'java'
+
+repositories {
+    mavenCentral()
+}
+
+
+/**** QueryDSL Class Generate Script ****/
+def queryDslOutput = file("src/main/generated")
+sourceSets {
+    main {
+        java {
+            srcDir queryDslOutput
+        }
+    }
+}
+
+task generateQueryDSL(type: JavaCompile, group: 'build') {
+    source = sourceSets.main.java
+    classpath = configurations.compile
+    destinationDir = queryDslOutput
+    options.compilerArgs = [
+            "-proc:only",
+            "-processor", 'com.querydsl.apt.jpa.JPAAnnotationProcessor,lombok.launch.AnnotationProcessorHider$AnnotationProcessor'
+    ]
+}
+compileJava.dependsOn(generateQueryDSL)
+
+clean {
+    delete queryDslOutput
+}
+
+dependencies {
+
+    compile "org.springframework.boot:spring-boot-starter-validation:${springBootVersion}"
+    compile "org.springframework.boot:spring-boot-starter-security:${springBootVersion}"
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}") {
+        exclude module: 'tomcat-jdbc'
+    }
+
+    // hibernate validator
+    compile 'org.hibernate:hibernate-validator:6.0.12.Final'
+
+    // query dsl
+    // alternate hibernate criteria api
+    compile 'com.querydsl:querydsl-jpa:4.2.1'
+    compile 'com.querydsl:querydsl-apt:4.2.1'
+    compile 'com.querydsl:querydsl-core:4.2.1'
+    compile 'com.querydsl:querydsl-sql:4.2.1'
+    compile 'com.querydsl:querydsl-collections:4.2.1'
+
+    // utils
+    compile 'org.projectlombok:lombok:1.18.2'
+    compile 'com.google.guava:guava:19.0'
+    compile 'org.apache.commons:commons-lang3:3.4'
+    compile 'org.apache.commons:commons-collections4:4.1'
+    compile 'commons-io:commons-io:2.5'
+    compile 'org.modelmapper:modelmapper:2.3.2'
+    //compile 'com.google.code.findbugs:jsr305:3.0.1'
+
+    // logs
+    compile 'ch.qos.logback:logback-classic:1.2.2'
+    compile "ch.qos.logback:logback-access:1.2.2"
+    compile "ch.qos.logback:logback-core:1.2.2"
+    compile 'org.slf4j:slf4j-api:1.7.25'
+    compile 'org.slf4j:jcl-over-slf4j:1.7.25'
+    compile 'org.slf4j:log4j-over-slf4j:1.7.25'
+    compile 'org.slf4j:jul-to-slf4j:1.7.25'
+    compile "org.slf4j:slf4j-jcl:1.7.5"
+
+    // log stash
+    //compile 'net.logstash.logback:logstash-logback-encoder:4.11'
+
+    // password validator
+    compile 'org.passay:passay:1.0'
+    // OTP
+    compile 'org.jboss.aerogear:aerogear-otp-java:1.0.0'
+
+    compile 'com.google.code.gson:gson:2.7'
+}

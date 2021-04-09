@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<th:block th:include="fragments/homeHeader"></th:block>
+<link th:if="${isAdmin}" rel="stylesheet" th:href="@{/resources/css/summernote.css}">
+
+<body>
+
+    <th:block th:include="fragments/homeNavigator"></th:block>
+
+    <script th:src="@{/resources/js/1.2.4.pagination.js}"></script>
+    <script th:src="@{/resources/js/1.12.2.bootstrap-table.js}"></script>
+    <script th:src="@{/resources/js/jquery-dateformat.min.js}"></script>
+    <script th:src="@{/resources/js/thymeleaf/notice.js}"></script>
+    <script th:if="${isAdmin}" th:src="@{/resources/js/summernote.min.js}"></script>
+
+    <!-- content start -->
+    <!-- transaction -->
+    <div class="container">
+        <div class="main-form" style="max-width:100%;height:1130px">
+            <form id="signUpForm">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <h2>공지사항</h2>
+                    </div>
+                    <div class="col-sm-7">
+                        <button th:if="${isAdmin}" id="btnNoticeRegModal" type="button" class="btn btn-pony btn-lg float-right" style="min-width:80px;padding:5px">공지사항 등록</button>
+                    </div>
+                </div>
+                <div class="container" style="padding:15px;">
+                    <table id="noticeTable">
+                        <thead>
+                            <tr>
+                                <th class="text-center w-25" data-field="regDtm">등록일</th>
+                                <th class="text-center w-75" data-field="title">제목</th>
+                            </tr>
+                        </thead>
+                        <tbody id="noticeBody"></tbody>
+                    </table>
+                    <ul id="pagination" class="pagination-md justify-content-center"></ul>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!--/* content end */-->
+<script th:inline="javascript" type="text/javascript">
+</script>
+
+    <!-- The Modal -->
+  <div th:if="${isAdmin}" class="modal fade" id="noticeRegModal">
+    <div class="modal-lg modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h2 class="modal-title">공지사항 등록</h2>
+          <p class="lead" style="margin-bottom:0px;"></p>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+            <div class="container">
+              <form>
+                  <div class="form-group row">
+                    <label for="title" class="col-sm-1 col-form-label">제목</label>
+                    <div class="col-sm-11">
+                        <input type="text" class="form-control" id="title" name="title" placeholder="제목을 입력하세요." required="required">
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                      <div id="summernote"></div>
+                  </div>
+                  <div class="form-group">
+                      <button type="submit" class="btn btn-pony btn-block btn-lg" id="btnNoticeReg">저장하기</button>
+                  </div>
+              </form>
+            </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script th:inline="javascript" type="text/javascript">
+    notice.isAdmin = /*[[${isAdmin}]]*/
+</script>
+
+    <th:block th:include="fragments/homeFooter"></th:block>
+</html>
